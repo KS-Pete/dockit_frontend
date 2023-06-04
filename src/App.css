@@ -1,0 +1,124 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #61dafb;
+
+  /* display: grid;
+  grid-gap: 1em;
+  justify-items: stretch;
+  align-items: stretch;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(100px, auto); */
+}
+
+.App-body {
+  background-color: #282c34;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #61dafb;
+  margin: 1em;
+
+  display: grid;
+  grid-gap: 0.5em;
+  align-items: stretch;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr;
+
+  grid-auto-rows: 30%;
+}
+
+.Task-bar {
+  /* background-color: red; */
+  grid-row: 1/3;
+  border-radius: 15px;
+  background-color: aquamarine;
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+.Task-button {
+
+}
+
+.box2 {
+background-color: green;
+grid-column: 2/4;
+border-radius: 15px;
+}
+
+.box3 {
+background-color: blue;
+border-radius: 15px;
+}
+
+.box4 {
+
+}
+.App-link {
+  color: #61dafb;
+}
+
+.task-list {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0.5em 0.5em;
+  
+}
+
+.task {
+  /* display: grid;
+  grid-template-columns: repeat(10, 1fr); */
+  background-color:blueviolet;
+  
+}
+.task-header{ 
+  /* color: red;
+  display: inline-flex;
+  background-color: burlywood; */
+  text-align: end;
+}
+
+.task-header button {
+  color: red;
+  display: inline-flex;
+  background-color: burlywood;
+  padding: 0px;
+}
+
+.task-body {
+  text-align: left;
+}
+
+.check-icon {
+  padding: 0px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
