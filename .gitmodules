@@ -1,0 +1,3 @@
+[submodule "dockit-backend"]
+	path = dockit-backend
+	url = https://github.com/KS-Pete/dockit_backend.git

@@ -1,11 +1,22 @@
 import React from 'react';
 import Task from './Task'
 
-const TaskList = () => {
+const TaskList = ({tasks, setTasks}) => {
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(item => item.id !== id));
+  }
     return (
         <div className="task-container">
             <ul className="task-list">
-                <Task />
+                {tasks?.map((task) => {
+                  if (Number.isInteger(task.id)){
+                return (  
+                    <Task key={task.id} task={task} deleteTask={deleteTask}/>
+                ) 
+                  }               
+                }
+                )}
+
             </ul>
         </div>
     )
