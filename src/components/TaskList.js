@@ -5,6 +5,9 @@ const TaskList = ({tasks, setTasks}) => {
   const deleteTask = (id) => {
     setTasks(tasks.filter(item => item.id !== id));
   }
+  // const checkTask = (id) => {
+  //   setTasks
+  // }
     return (
         <div className="task-container">
             <ul className="task-list">

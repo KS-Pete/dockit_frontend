@@ -21,6 +21,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #61dafb;
+  padding-top: 20px;
 
   /* display: grid;
   grid-gap: 1em;
@@ -57,6 +58,21 @@
   padding-top: 1.5em;
 }
 
+.Task-bar .select .left{
+  width: 50%;
+  text-align: start;
+}
+
+.Task-bar .select .right{
+  width: 50%;
+  text-align: end;
+}
+
+.select{
+  display: flex;
+  align-items: center;
+}
+
 button.Task-button {
   padding: 0px 0px;
   height: 100%;
@@ -70,7 +86,7 @@ border-radius: 15px;
 }
 
 .box3 {
-background-color: #1976d2;
+background-color: #14161a;
 border-radius: 15px;
 }
 
@@ -100,30 +116,64 @@ border-radius: 15px;
    text-align: end;*/
   background-color: #282c34; 
   display: flex;
+  height: 35px;
+  margin-top: 25px;
+}
+
+.task-header button {
+  margin: 0px 5px;
+}
+
+.task-header .ui.tiny.label{
+  margin: 0px 5px;
 }
 
 .task-header .left{
   display: flex;
-  width: 50%;
+  align-items: center;
+  width: 30%;
 
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .task-header .right{
   display: flex;
-  width: 50%;
-  align-items: end;
+  width: 70%;
+  align-items: center;
   justify-content: end;
+  margin-left: 10px !important;
+}
 
+.task-header .right svg.edit-icon{
+  /* color: #1976d2 !important; */
+  color: white;
+}
+
+.right .Mui-selected {
+  color: white !important;
+  background-color: #1976d2 !important;
+  padding: 6px;
+  margin-bottom: 5px;
+  transition-duration: 0.25s;
+}
+
+.right .edit-icon-background {
+  transition-duration: 0.25s;
+  padding: 5px;
 }
 
 .task-header button {
-  /* position: absolute;
-  left: 0; */
+
+}
+
+.task-header .delete-icon {
   color: red;
 
   padding: 0px;
+}
 
+.task-header .edit-icon {
+  color: #61dafb;
 }
 
 .task-header .delete-icon {
@@ -131,7 +181,7 @@ border-radius: 15px;
 }
 
 .ui.tiny.label, .ui.tiny.labels .label {
-  margin: 6px 20px !important;
+
 }
 
 .tiny-title-label {
@@ -140,6 +190,13 @@ border-radius: 15px;
   background-color: unset !important;
   border-color: #1976d2 !important;
   color: white !important;
+}
+
+.tiny-date-label {
+  background-color: #1976d2 !important;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5px !important;
 }
 
 
@@ -164,11 +221,24 @@ input#task-title-input_text {
   color: white;
 }
 
+input#task-title-input_text_edit {
+  color: white;
+  font-size: small;
+}
+
+textarea#task-input-edit {
+  color: #61dafb;
+}
+
 .task-text {
   font-family: 'Abel';
   font-size: medium;
-  white-space: pre-line;
+  white-space: pre-wrap;
+  max-height: 100px;
+  text-overflow: ellipsis;
+  overflow: auto;
 }
+
 
 
 
@@ -195,6 +265,15 @@ input#task-title-input_text {
 
 
 
+.toolbar-class {
+  background: rgba(0,0,0,0.0) !important;
+  border: none !important;
+}
+.rdw-option-wrapper {
+  background: #61dafb !important;
+  border-color: black !important; 
+}
+
 
 
 
@@ -209,4 +288,11 @@ input#task-title-input_text {
   padding: 0px;
 }
 
+.MuiBox-root {
+  width: 100%;
+  height: 100%;
+}
 
+.Document {
+  height: 100%;
+}

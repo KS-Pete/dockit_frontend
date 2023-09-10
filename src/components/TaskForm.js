@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
-import { Select, FormControl, MenuItem } from '@mui/material';
+import { useState, useRef } from 'react';
+import { Select, FormControl, MenuItem, IconButton, Checkbox } from '@mui/material';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import Request from './Request';
+import reactStringReplace from 'react-string-replace';
 
 
 const Button = styled.button`
@@ -20,8 +23,8 @@ const Button = styled.button`
 `;
 
 const Form = ({setInputText, tasks, setTasks, inputText, filterSelectValue, setFilterSelectValue}) => {
+    const inputRef = useRef(null);
     const [taskInput, setTaskInput] = useState("");
-    // const [filterSelectValue, setFilterSelectValue] = useState(1);
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     }
@@ -31,19 +34,24 @@ const Form = ({setInputText, tasks, setTasks, inputText, filterSelectValue, setF
     const handleFilterSelect = (e) => {
         setFilterSelectValue(e.target.value);
     }
-        
+
+    const handleTitleFocus = (e) => {
+        if (e.keyCode === 13) {
+            inputRef.current.focus();
+        }
+       
+    }
+
 function convertedDate (){
     const date = new Date();
     if (date != null) {
         const day = date.getDate();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-        // return (('0' + day).slice(-2) + "." + ('0' + month).slice(-2) + "." + year);
         return (year + '-' + ('0' + month).slice(-2) + '-' + ('0' + day).slice(-2));
     }
     return null
 }
-
 const submitTaskHandler = (e) => {
     e.preventDefault();
     const date = new Date(convertedDate());
@@ -70,7 +78,9 @@ const submitTaskHandler = (e) => {
 } 
     return(
         <FormControl fullWidth>
-            {/* <input value={inputText} onChange={inputTextHandler} type="text" className="task-input" /> */}
+            {/* reactStringReplace(inputText, '@', () => (
+                        checkboxx
+                      )) */}
             <div className='taskform-header'>
                 <div className='taskform-title'>
                     <TextField
@@ -84,6 +94,8 @@ const submitTaskHandler = (e) => {
                         shrink: true,
                     }}
                     variant="standard"
+                    autoFocus
+                    onKeyDown={handleTitleFocus}
                     />
                 </div>
                 <div className='taskform-buttons'>
@@ -94,20 +106,31 @@ const submitTaskHandler = (e) => {
                 </div>
             </div>
             <div className='task-input-field'>
-                <TextField id="task-input" value={taskInput} label="Task" variant="filled" multiline onChange={taskInputHandler}/>
+                <TextField id="task-input" value={taskInput} label="Task" inputRef={inputRef} variant="filled" multiline onChange={taskInputHandler}/>
             </div>
             <div className="select">
-                <Select
-                    labelId="task-filter-select-label"
-                    id="task-filter-select-id"
-                    value={filterSelectValue}
-                    onChange={handleFilterSelect}
-                >
-                {/* <select name="tasks" className="task-filter"> */}
-                    <MenuItem value={1}>All</MenuItem>
-                    <MenuItem value={2}>Completed</MenuItem>
-                    <MenuItem value={3}>Uncompleted</MenuItem>
-                </Select>
+                <div className='left'>
+                    <IconButton onClick={() => {
+                        Request("", "GET")
+                            .then((response) => {
+                                console.log("fire taskform: " + response);
+                                setTasks(response);
+                            })
+                    }}><RefreshIcon /></IconButton>
+                </div>
+                <div className='right'>
+                    <Select
+                        labelId="task-filter-select-label"
+                        id="task-filter-select-id"
+                        value={filterSelectValue}
+                        onChange={handleFilterSelect}
+                    >
+                    {/* <select name="tasks" className="task-filter"> */}
+                        <MenuItem value={1}>All</MenuItem>
+                        <MenuItem value={2}>Completed</MenuItem>
+                        <MenuItem value={3}>Uncompleted</MenuItem>
+                    </Select>
+                </div>
             </div>
         </FormControl>
     )
